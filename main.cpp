@@ -19,7 +19,7 @@ int main(){
         int time,period;
         cin>>startx>>starty>>stopx>>stopy;
         cin>>time>>period;
-        //m.add_lift(startx,starty,stopx,stopy,time,period);
+        m.add_lift(startx,starty,stopx,stopy,time,period);
     }
 
     m.load_map();

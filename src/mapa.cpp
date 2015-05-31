@@ -34,6 +34,18 @@ void mapa::draw(){
     }
 }
 
+int mapa::time_count(field startA,field metaB){
+    if(startA.height>=metaB.height){
+        return 1;
+    }else{
+        return metaB.height-startA.height+1;
+    }
+}
+
+void mapa::flood(){
+
+
+}
 
 
 
@@ -63,9 +75,8 @@ void mapa::draw(){
 
 
 
-
-//void mapa::add_lift(int, int, int, int, int, int){
-//}
+void mapa::add_lift(int, int, int, int, int, int){
+}
 
 
 
