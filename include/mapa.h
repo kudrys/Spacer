@@ -5,10 +5,10 @@
 class mapa
 {
     public:
-        mapa();
+        mapa(int,int);
         int x;
         int y;
-        void create_map();
+        field *f_tab;
         virtual ~mapa();
     protected:
     private:
