@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-lift::lift(x,y,time,period){
+lift::lift(int x,int y,int time,int period){
     x_destination=x;
     y_destination=y;
     time_travel=time;
