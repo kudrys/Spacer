@@ -42,10 +42,31 @@ int mapa::time_count(field startA,field metaB){
     }
 }
 
+
+
 void mapa::flood(){
 
+    int activex=travel_start_x;
+    int activey=travel_start_y;
 
+    field active=f_tab[activex][activey];
+
+    while (active!=f_tab[travel_destination_x][travel_destination_y]){
+
+        if(activey!=0)
+            f_tab[activex][activey-1].travel_time=time_count(f_tab[activex][activey],f_tab[activex][activey-1]);  //up
+        if( activey<=y)
+            f_tab[activex][activey+1].travel_time=time_count(f_tab[activex][activey],f_tab[activex][activey+1]);  //down
+        if(activex<=x)
+            f_tab[activex+1][activey].travel_time=time_count(f_tab[activex][activey],f_tab[activex+1][activey]);  //right
+        if(activex!=0)
+            f_tab[activex][activey-1].travel_time=time_count(f_tab[activex][activey],f_tab[activex-1][activey]);  //left
+    }
 }
+
+
+
+
 
 
 

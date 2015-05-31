@@ -9,6 +9,8 @@ class field
         int height;
         int travel_time;
         int lift_counter;
+        bool marked;
+        int compute_from(field);
         lift *l;
 
         virtual ~field();
