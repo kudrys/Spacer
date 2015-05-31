@@ -8,10 +8,16 @@ class mapa
         mapa(int,int);
         int x;
         int y;
+        int travel_start_x;
+        int travel_start_y;
+        int travel_destination_x;
+        int travel_destination_y;
+        int lift_counter;
         field **f_tab;
         void load_map();
         void draw();
-        void add_lift(int,int,int,int,int,int);
+        void time_count();
+        //void add_lift(int,int,int,int,int,int);
         void funkk();
         virtual ~mapa();
     protected:

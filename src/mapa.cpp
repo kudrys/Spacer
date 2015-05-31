@@ -27,6 +27,7 @@ void mapa::load_map() {
 
 void mapa::draw(){
    for(int i=0;i<y;i++){
+        cout<<"\n";
         for(int j=0;j<x;j++){
             cout<<f_tab[i][j].height;
         }
@@ -35,9 +36,36 @@ void mapa::draw(){
 
 
 
-void mapa::add_lift(int, int, int, int, int, int){
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//void mapa::add_lift(int, int, int, int, int, int){
+//}
 
 
 
