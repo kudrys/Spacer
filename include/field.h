@@ -10,7 +10,7 @@ class field
         int travel_time;
         int lift_counter;
         bool marked;
-        int compute_from(field);
+        int compute_from(field*);
         lift *l;
 
         virtual ~field();

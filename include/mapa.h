@@ -16,6 +16,7 @@ class mapa
         field **f_tab;
         void load_map();
         void draw();
+        void draw_times();
         int time_count(field*,field*);
         void flood();
         void add_lift(int,int,int,int,int,int);
