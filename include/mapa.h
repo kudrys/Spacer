@@ -17,6 +17,7 @@ class mapa
         void load_map();
         void draw();
         void draw_times();
+        void draw_times(int,int);
         int time_count(field*,field*);
         void flood();
         void add_lift(int,int,int,int,int,int);

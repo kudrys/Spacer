@@ -38,7 +38,24 @@ void mapa::draw_times(){
    for(int i=0;i<y;i++){
         cout<<"\n";
         for(int j=0;j<x;j++){
-            cout<<f_tab[i][j].travel_time;
+            cout<<f_tab[i][j].travel_time<<" ";
+            if(f_tab[i][j].travel_time<10)
+                cout<<" ";
+        }
+    }cout<<"\n\n";
+}
+
+void mapa::draw_times(int a, int b){
+   for(int i=0;i<y;i++){
+        cout<<"\n";
+        for(int j=0;j<x;j++){
+            if(a==i&&b==j){
+                cout<<"[] ";
+            }else{
+            cout<<f_tab[i][j].travel_time<<" ";
+            if(f_tab[i][j].travel_time<10)
+                cout<<" ";
+            }
         }
     }cout<<"\n\n";
 }
@@ -59,13 +76,17 @@ void mapa::flood(){
     field * active = &f_tab[activex][activey];
 
 
-    while (active != &f_tab[travel_destination_x][travel_destination_y]){
-        draw_times();
+    while (active != &f_tab[travel_destination_y][travel_destination_x]){
+
+        int k;
+        cin>>k;
+        draw_times(activex,activey);
+
 
         activex=travel_start_x;
         activey=travel_start_y;
 
-        active = &f_tab[activex][activey];
+        active = &f_tab[activey][activex];
         active->marked=1;
         field * temp;
 
@@ -75,11 +96,11 @@ void mapa::flood(){
         int tab_y[4]={activey,activey,activey-1,activey+1};
 
         for(int i=0;i<4;i++){
-
+        cout<<"\n-"<<i<<"-\n";
             int temp_x=tab_x[i];
             int temp_y=tab_y[i];
             if(0<=temp_x&&temp_x<x&&0<=temp_y&&temp_y<y){
-                temp = &f_tab[temp_x][temp_y];
+                temp = &f_tab[temp_y][temp_x];
                 if(temp->marked)
                     continue;
                 //temp->travel_time=time_count(active,temp);

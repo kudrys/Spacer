@@ -18,9 +18,6 @@ field::~field(){
 
 int field::compute_from(field *a){
 
-
-    cout<<height;
-    cout<<a->height;
     if(marked)
         return 0;
 
@@ -32,6 +29,10 @@ int field::compute_from(field *a){
     }
     if(travel_time&&a->travel_time+time<travel_time){
         travel_time=a->travel_time+time;
+    }else{
+        if(!travel_time){
+            travel_time=a->travel_time+time;
+        }
     }
     return travel_time;
 }

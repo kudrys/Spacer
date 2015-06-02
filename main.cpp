@@ -23,7 +23,7 @@ int main(){
     }
     m.load_map();
     m.draw();
-
+//
 //    m.f_tab[0][1].marked=1;
 //    cout<<"compute:"<<m.f_tab[0][0].compute_from(&m.f_tab[0][1])<<"\n";
 //    cout<<"compute:"<<m.f_tab[0][1].compute_from(&m.f_tab[0][0])<<"\n";
@@ -34,16 +34,8 @@ int main(){
 //    cout<<m.f_tab[3][5].height;
 //    cout<<m.f_tab[1][2].height;
 //
-
-
-
-
-
-
-
-
-    cout<<"\n-----------------------\n";
-    m.flood();
+   cout<<"\n-----------------------\n";
+   m.flood();
 }
 
 
