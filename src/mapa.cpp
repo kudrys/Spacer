@@ -49,12 +49,21 @@ void mapa::flood(){
     int activex=travel_start_x;
     int activey=travel_start_y;
 
-    field active=f_tab[activex][activey];
-
+    field * active=f_tab[activex][activey];
+    field * temp;
     while (active!=f_tab[travel_destination_x][travel_destination_y]){
+        temp_time=-1;
+        field * t[4]={&f_tab[activex][activey-1],&f_tab[activex][activey+1]}
+        if(activey!=0){
+            temp_x=activex;
+            temp_y=activey-1
+            temp = &f_tab[activex][activey-1];
+            temp->travel_time=time_count(active,temp);  //up
+            if(time_count(active, temp)<temp_time||temp_time==-1){
+              travel_start_y=temp_y
+            }
 
-        if(activey!=0)
-            f_tab[activex][activey-1].travel_time=time_count(f_tab[activex][activey],f_tab[activex][activey-1]);  //up
+        }
         if( activey<=y)
             f_tab[activex][activey+1].travel_time=time_count(f_tab[activex][activey],f_tab[activex][activey+1]);  //down
         if(activex<=x)
@@ -98,9 +107,3 @@ void mapa::flood(){
 
 void mapa::add_lift(int, int, int, int, int, int){
 }
-
-
-
-
-
-
