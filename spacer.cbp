@@ -31,6 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="include/field.h" />
+		<Unit filename="include/lift.h" />
+		<Unit filename="include/mapa.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/field.cpp" />
+		<Unit filename="src/lift.cpp" />
+		<Unit filename="src/mapa.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
