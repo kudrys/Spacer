@@ -1,5 +1,5 @@
 #include <iostream>
-#include "mapa.h"
+#include "include/mapa.h"
 using namespace std;
 
 int main(){
@@ -24,6 +24,8 @@ int main(){
 
     m.load_map();
     m.draw();
+    cout<<"\n-----------------------\n";
+    m.flood();
 }
 
 

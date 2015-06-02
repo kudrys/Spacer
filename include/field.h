@@ -1,6 +1,6 @@
 #ifndef FIELD_H
 #define FIELD_H
-#include "lift.h"
+#include "../include/lift.h"
 
 class field
 {

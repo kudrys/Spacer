@@ -1,4 +1,4 @@
-#include "lift.h"
+#include "../include/lift.h"
 #include <iostream>
 using namespace std;
 
