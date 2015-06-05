@@ -1,4 +1,5 @@
 #include "../include/mapa.h"
+#include "../include/mapa.h"
 #include "../include/field.h"
 #include <iostream>
 using namespace std;
@@ -49,14 +50,21 @@ void mapa::draw_times(int a, int b){
    for(int i=0;i<y;i++){
         cout<<"\n";
         for(int j=0;j<x;j++){
-            if(a==j&&b==i){
-                cout<<"[] ";
+            if(f_tab[i][j].marked){
+
+                if(a==j&&b==i){
+                    cout<<"[] ";
+                }else{
+                    cout << "-- ";
+                }
+                continue;
             }else{
-            cout<<f_tab[i][j].travel_time<<" ";
-            if(f_tab[i][j].travel_time<10)
-                cout<<" ";
+                cout<<f_tab[i][j].travel_time<<" ";
+                if(f_tab[i][j].travel_time<10)
+                    cout<<" ";
             }
         }
+
     }cout<<"\n\n";
 }
 
@@ -96,7 +104,6 @@ void mapa::flood(){
         int tab_y[4]={activey,activey,activey-1,activey+1};
 
         for(int i=0;i<4;i++){
-        cout<<"\n-"<<i<<"-\n";
             int temp_x=tab_x[i];
             int temp_y=tab_y[i];
             if(0<=temp_x&&temp_x<x&&0<=temp_y&&temp_y<y){
@@ -105,9 +112,11 @@ void mapa::flood(){
                     continue;
                 //temp->travel_time=time_count(active,temp);
                 int shortest_time=temp->compute_from(active);
+                cout << "\nshort: " << shortest_time << " tem: " << temp_time;
                 if(shortest_time&&(shortest_time<temp_time||temp_time==-1)){
                     travel_start_x=temp_x;
                     travel_start_y=temp_y;
+                    temp_time=shortest_time;
                 }
             }else{
                 continue;
