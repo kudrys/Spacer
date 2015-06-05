@@ -49,7 +49,7 @@ void mapa::draw_times(int a, int b){
    for(int i=0;i<y;i++){
         cout<<"\n";
         for(int j=0;j<x;j++){
-            if(a==i&&b==j){
+            if(a==j&&b==i){
                 cout<<"[] ";
             }else{
             cout<<f_tab[i][j].travel_time<<" ";
