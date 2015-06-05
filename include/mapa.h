@@ -1,6 +1,7 @@
 #ifndef MAPA_H
 #define MAPA_H
 #include "field.h"
+#include "heap.h"
 
 class mapa
 {
@@ -8,6 +9,7 @@ class mapa
         mapa(int,int);
         int x;
         int y;
+        heap h;
         int travel_start_x;
         int travel_start_y;
         int travel_destination_x;

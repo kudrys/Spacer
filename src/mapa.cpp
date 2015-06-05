@@ -5,7 +5,7 @@
 using namespace std;
 
 mapa::mapa(int x, int y){
-
+    h=new heap(this);
     this->x=x;
     this->y=y;
     f_tab = new field* [y];
@@ -86,7 +86,7 @@ void mapa::flood(){
 
     while (active != &f_tab[travel_destination_y][travel_destination_x]){
 
-        int k;
+        char k;
         cin>>k;
         draw_times(activex,activey);
 
