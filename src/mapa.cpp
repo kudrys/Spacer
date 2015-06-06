@@ -20,6 +20,9 @@ mapa::mapa(int x, int y){
 	h.heap_size=0;
 	h.tab = new int [h.tabsize];
 	h.map_tab=f_tab;
+
+	h.x=x;
+	h.y=y;
 }
 
 mapa::~mapa(){
@@ -96,6 +99,7 @@ void mapa::flood(){
         char k;
         cin>>k;
         draw_times(activex,activey);
+        h.draw_times(activex,activey);
 
         compute_routes(activex, activey);
         //hsort ważne! odkomentowac! jako i temp

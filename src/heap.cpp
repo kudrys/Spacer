@@ -8,7 +8,7 @@ heap::heap(){
 
 int heap::get_time(int i){
 	//cout << x << y << endl;
-	cout << "xy: " << tab[i] << " " << getx(i) << " " << gety(i)<< "\n";
+	//cout << "xy: " << i << " " << tab[i] << " " << getx(i) << " " << gety(i)<< "\n";
 	return map_tab[getx(i)][gety(i)].travel_time;//check TODO
 }
 
@@ -19,16 +19,17 @@ void heap::sort(){
 	for(int i=(heap_size/2)-0;i>=0;--i){
         int l=i*2+1;
         int r=l+1;
-
+/*
         draw();
         cout << "\ni: " << i;
         cout << "l: " << l << "r: " << r << endl;
-
-		int temp=1000;//get_time(tab[i]);
-		if (l<heap_size&&get_time(tab[l])<temp){
+*/
+		int temp=get_time(i);
+		if (l<heap_size&&get_time(l)<temp){
 			swap(i,l);
 		}
-		if (r<heap_size&&get_time(tab[r])<temp){
+            draw();
+		if (r<heap_size&&get_time(r)<temp){
 			swap(i,r);
 		}
 	}
@@ -46,10 +47,8 @@ int heap::remove_first(){
 }
 
 void heap::add(int x, int y){
-    cout << "\nttttttttttttttttttttttttt" << tab[heap_size] << "hs: " << heap_size;
     tab[heap_size]=x*width+y;
     heap_size++;
-    cout << "\nttttttttttttttttttttttttt" << tab[heap_size] << "hs: " << heap_size;
 }
 
 int heap::getx(int i){
@@ -64,6 +63,9 @@ void heap::draw(){
     cout <<endl;
     for(int i=0;i<heap_size;i++){
         cout << tab[i] << " ";
+    }cout << "\nt: ";
+    for(int i=0;i<heap_size;i++){
+        cout << get_time(tab[i]) << " ";
     }
 }
 
@@ -71,4 +73,26 @@ void heap::swap(int a, int b){
 	int swap=tab[a];
 	tab[a]=tab[b];
 	tab[b]=swap;
+}
+
+void heap::draw_times(int a, int b){
+   for(int i=0;i<y;i++){
+        cout<<"\n";
+        for(int j=0;j<x;j++){
+            if(map_tab[i][j].marked){
+
+                if(a==j&&b==i){
+                    cout<<"[] ";
+                }else{
+                    cout << "-- ";
+                }
+                continue;
+            }else{
+                cout<<map_tab[i][j].travel_time<<" ";
+                if(map_tab[i][j].travel_time<10)
+                    cout<<" ";
+            }
+        }
+
+    }cout<<"\n\n";
 }
