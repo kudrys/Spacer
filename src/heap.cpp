@@ -8,14 +8,15 @@ heap::heap(){
 
 int heap::get_time(int i){
 	//cout << x << y << endl;
-	return map_tab[gety(i)][getx(i)].travel_time;
+	cout << "xy: " << tab[i] << " " << getx(i) << " " << gety(i)<< "\n";
+	return map_tab[getx(i)][gety(i)].travel_time;//check TODO
 }
 
 void heap::sort(){
-//cout << "heap" << heap_size/2-2 << tab[0] << tab[1];
+    //cout << "heap" << heap_size/2-2 << tab[0] << tab[1];
 
     cout << "sortujemy\n" << heap_size;
-	for(int i=(heap_size/2)-1;i>=0;--i){
+	for(int i=(heap_size/2)-0;i>=0;--i){
         int l=i*2+1;
         int r=l+1;
 
@@ -23,7 +24,7 @@ void heap::sort(){
         cout << "\ni: " << i;
         cout << "l: " << l << "r: " << r << endl;
 
-		int temp=get_time(tab[i]);
+		int temp=1000;//get_time(tab[i]);
 		if (l<heap_size&&get_time(tab[l])<temp){
 			int swap=tab[i];
 			tab[i]=tab[l];
@@ -49,8 +50,10 @@ int heap::remove_first(){
 }
 
 void heap::add(int x, int y){
+    cout << "\nttttttttttttttttttttttttt" << tab[heap_size] << "hs: " << heap_size;
     tab[heap_size]=x*width+y;
     heap_size++;
+    cout << "\nttttttttttttttttttttttttt" << tab[heap_size] << "hs: " << heap_size;
 }
 
 int heap::getx(int i){
