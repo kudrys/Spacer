@@ -23,6 +23,9 @@ class mapa
         int time_count(field*,field*);
         void flood();
         void add_lift(int,int,int,int,int,int);
+        void compute_lifts(int, int);
+        void compute_near(int, int);
+        void compute_routes(int, int);
         void funkk();
         virtual ~mapa();
     protected:

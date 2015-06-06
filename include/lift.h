@@ -5,6 +5,7 @@
 class lift
 {
     public:
+        //lift();
         lift(int,int,int,int);
         int x_destination;
         int y_destination;

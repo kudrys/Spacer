@@ -5,13 +5,21 @@
 using namespace std;
 
 mapa::mapa(int x, int y){
-    h=new heap(this);
+
     this->x=x;
     this->y=y;
     f_tab = new field* [y];
     for (int i = 0; i < y; i++) {
         f_tab[i] = new field [x];
     }
+
+    //construct heap
+
+	h.width=100;//TODO zmienić 100 na x
+	h.tabsize=100;
+	h.heap_size=0;
+	h.tab = new int [h.tabsize];
+	h.map_tab=f_tab;
 }
 
 mapa::~mapa(){
@@ -81,8 +89,7 @@ void mapa::flood(){
     int activex=travel_start_x;
     int activey=travel_start_y;
 
-    field * active = &f_tab[activex][activey];
-
+    field * active = &f_tab[activey][activex];
 
     while (active != &f_tab[travel_destination_y][travel_destination_x]){
 
@@ -90,42 +97,53 @@ void mapa::flood(){
         cin>>k;
         draw_times(activex,activey);
 
+        compute_routes(activex, activey);
+        //hsort ważne! odkomentowac! jako i temp
+        h.sort();
+        int temp=h.remove_first();
+        cout << temp;
+        h.sort();
+        activex=temp/h.width;// check both
+        activey=temp%h.width;
 
-        activex=travel_start_x;
-        activey=travel_start_y;
-
-        active = &f_tab[activey][activex];
-        active->marked=1;
-        field * temp;
-
-        int temp_time=-1;
-        //tab_x-y[4]={left,right,up,down}
-        int tab_x[4]={activex-1,activex+1,activex,activex};
-        int tab_y[4]={activey,activey,activey-1,activey+1};
-
-        for(int i=0;i<4;i++){
-            int temp_x=tab_x[i];
-            int temp_y=tab_y[i];
-            if(0<=temp_x&&temp_x<x&&0<=temp_y&&temp_y<y){
-                temp = &f_tab[temp_y][temp_x];
-                if(temp->marked)
-                    continue;
-                //temp->travel_time=time_count(active,temp);
-                int shortest_time=temp->compute_from(active);
-                cout << "\nshort: " << shortest_time << " tem: " << temp_time;
-                if(shortest_time&&(shortest_time<temp_time||temp_time==-1)){
-                    travel_start_x=temp_x;
-                    travel_start_y=temp_y;
-                    temp_time=shortest_time;
-                }
-            }else{
-                continue;
-            }
-        }
     }
 }
 
 
+void mapa::compute_routes(int activex, int activey){
+    f_tab[activey][activex].marked=1;
+
+    compute_near(activex, activey);
+    compute_lifts(activex, activey);
+}
+
+void mapa::compute_near(int activex, int activey){
+    field * active = &f_tab[activey][activex];
+    field * temp;
+
+    //tab_x-y[4]={left,right,up,down}
+    int tab_x[4]={activex-1,activex+1,activex,activex};
+    int tab_y[4]={activey,activey,activey-1,activey+1};
+
+    for(int i=0;i<4;i++){
+        int temp_x=tab_x[i];
+        int temp_y=tab_y[i];
+        if(0<=temp_x&&temp_x<x&&0<=temp_y&&temp_y<y){
+            temp = &f_tab[temp_y][temp_x];
+            if(temp->marked)
+                continue;
+            //TODO if !(temp.traveltime) add to heap
+            if(!temp->travel_time){
+                h.add(temp_x, temp_y);
+            }
+            temp->compute_from(active);
+        }
+    }
+}
+
+void mapa::compute_lifts(int temp_x, int temp_y){
+    //TODO
+}
 
 
 
