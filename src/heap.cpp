@@ -26,14 +26,10 @@ void heap::sort(){
 
 		int temp=1000;//get_time(tab[i]);
 		if (l<heap_size&&get_time(tab[l])<temp){
-			int swap=tab[i];
-			tab[i]=tab[l];
-			tab[l]=swap;
+			swap(i,l);
 		}
 		if (r<heap_size&&get_time(tab[r])<temp){
-			int swap=tab[i];
-			tab[i]=tab[r];
-			tab[r]=swap;
+			swap(i,r);
 		}
 	}
 }
@@ -69,4 +65,10 @@ void heap::draw(){
     for(int i=0;i<heap_size;i++){
         cout << tab[i] << " ";
     }
+}
+
+void heap::swap(int a, int b){
+	int swap=tab[a];
+	tab[a]=tab[b];
+	tab[b]=swap;
 }

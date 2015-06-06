@@ -19,6 +19,7 @@ class heap
         void draw();
         int getx(int);
         int gety(int);
+        void swap(int, int);
     protected:
     private:
 };
