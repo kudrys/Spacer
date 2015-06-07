@@ -110,7 +110,7 @@ void mapa::flood(){
         h.sort();
         activex=temp%h.width;// check both
         activey=temp/h.width;
-
+        active = &f_tab[activey][activex];
     }
     cout << active->travel_time;
 }
