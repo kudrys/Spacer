@@ -23,7 +23,7 @@ int main(){
         m.add_lift(startx,starty,stopx,stopy,time,period);
     }
     m.load_map();
-    m.draw();
+    //m.draw();
 //
 //    m.f_tab[0][1].marked=1;
 //    cout<<"compute:"<<m.f_tab[0][0].compute_from(&m.f_tab[0][1])<<"\n";

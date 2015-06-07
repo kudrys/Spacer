@@ -23,6 +23,8 @@ class heap
         int gety(int);
         void swap(int, int);
         void draw_times(int,int);
+        void enlarge();
+        void draw_top();
     protected:
     private:
 };

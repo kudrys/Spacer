@@ -15,8 +15,8 @@ mapa::mapa(int x, int y){
 
     //construct heap
 
-	h.width=100;//TODO zmienić 100 na x
-	h.tabsize=100;
+	h.width=x;//TODO zmienić 100 na x
+	h.tabsize=1;
 	h.heap_size=0;
 	h.tab = new int [h.tabsize];
 	h.map_tab=f_tab;
@@ -95,23 +95,24 @@ void mapa::flood(){
     field * active = &f_tab[activey][activex];
 
     while (active != &f_tab[travel_destination_y][travel_destination_x]){
-        cout <<" "<< active << " " << &f_tab[travel_destination_y][travel_destination_x];
+        //cout <<" "<< active << " " << &f_tab[travel_destination_y][travel_destination_x];
         active = &f_tab[activey][activex];
         char k;
         cin>>k;
-        h.draw_times(activex,activey);
+        //h.draw_times(activex,activey);
         //h.draw_times(activex,activey);
 
         compute_routes(activex, activey);
         //hsort ważne! odkomentowac! jako i temp
         h.sort();
         int temp=h.remove_first();
-        cout << temp;
+        //cout << temp;
         h.sort();
         activex=temp%h.width;// check both
         activey=temp/h.width;
 
     }
+    cout << active->travel_time;
 }
 
 

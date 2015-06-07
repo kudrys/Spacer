@@ -30,13 +30,27 @@ void heap::sort(){
         cout << "l: " << l << "r: " << r << endl;
 */
 		int temp=get_time(i);
+		if(r<heap_size){
+            if (get_time(l)<temp||get_time(r)<temp){
+                if(get_time(l)<get_time(r))
+                    swap(i,l);
+                else
+                    swap(i,r);
+            }
+		}else{
+            if (get_time(l)<temp)
+                swap(i,l);
+		}
+
+		/*
 		if (l<heap_size&&get_time(l)<temp){
 			swap(i,l);
 		}
-            //draw();
+            draw_top();
 		if (r<heap_size&&get_time(r)<temp){
 			swap(i,r);
 		}
+		*/
 	}
 }
 
@@ -53,8 +67,20 @@ int heap::remove_first(){
 
 
 void heap::add(int x, int y){
+    if(heap_size==tabsize)
+        enlarge();
     tab[heap_size]=y*width+x;
     heap_size++;
+}
+
+void heap::enlarge(){
+    int *tab2 = new int[tabsize*2];
+    for(int i=0; i<tabsize; i++)
+        tab2[i]=tab[i];
+    int * temp=tab;
+    tab=tab2;
+    delete temp;
+    tabsize*=2;
 }
 
 int heap::getx(int i){
@@ -81,28 +107,30 @@ void heap::swap(int a, int b){
 	tab[b]=swap;
 }
 
-//metoda na odstrzal
+//metoda na odstrzal - albo nie
 void heap::draw_times(int a, int b){
    for(int i=0;i<y;i++){
         cout<<"\n";
         for(int j=0;j<x;j++){
-            if(map_tab[i][j].marked){
-
-                if(a==j&&b==i){
-                    cout<<"[] ";
-                }else{
-                    cout << "-- ";
-                }
-                continue;
-            }else{
-
-                cout<<map_tab[i][j].travel_time;//<<" ";
-                if(map_tab[i][j].travel_time<10)
-                    cout<<" ";
-                char cc = ' ';
-                cc=(a==j&&b==i)?'*':' ';
-                cout << cc;
-            }
+            if(a==j&&b==i)cout << '*';
+            else cout << " ";
+            if(map_tab[i][j].marked) cout << "#";
+            else cout << " ";
+            cout<<map_tab[i][j].travel_time;//<<" ";
+            if(map_tab[i][j].travel_time<10)
+                cout<<" ";
+            if(map_tab[i][j].travel_time<100)
+                cout<<" ";
         }
     }cout<<"\n\n";
+}
+
+void heap::draw_top(){
+    int top = 7>heap_size?heap_size:7;
+    cout << "\n\n";
+    for(int i=0; i<top;i++){
+        if (i==1||i==3)cout << "\n";
+        cout << tab[i]<< "(" << get_time(i) << ") ";
+    }
+
 }
