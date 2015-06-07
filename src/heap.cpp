@@ -38,10 +38,10 @@ void heap::sort(){
                     swap(i,r);
             }
 		}else{
-            if (get_time(l)<temp)
+            if (l<heap_size&&get_time(l)<temp)
                 swap(i,l);
 		}
-
+        //draw_top();
 		/*
 		if (l<heap_size&&get_time(l)<temp){
 			swap(i,l);

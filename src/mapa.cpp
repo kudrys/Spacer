@@ -97,8 +97,8 @@ void mapa::flood(){
     while (active != &f_tab[travel_destination_y][travel_destination_x]){
         //cout <<" "<< active << " " << &f_tab[travel_destination_y][travel_destination_x];
         active = &f_tab[activey][activex];
-        char k;
-        cin>>k;
+        //char k;
+        //cin>>k;
         //h.draw_times(activex,activey);
         //h.draw_times(activex,activey);
 
