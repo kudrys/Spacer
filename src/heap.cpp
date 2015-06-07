@@ -6,16 +6,21 @@ heap::heap(){
     //empty
 }
 
+/**
+*   takes hashed number as an argument
+*   @i -
+*
+*
+*/
+
+
 int heap::get_time(int i){
 	//cout << x << y << endl;
 	//cout << "xy: " << i << " " << tab[i] << " " << getx(i) << " " << gety(i)<< "\n";
-	return map_tab[getx(i)][gety(i)].travel_time;//check TODO
+	return map_tab[gety(i)][getx(i)].travel_time;//check TODO
 }
 
 void heap::sort(){
-    //cout << "heap" << heap_size/2-2 << tab[0] << tab[1];
-
-    cout << "sortujemy\n" << heap_size;
 	for(int i=(heap_size/2)-0;i>=0;--i){
         int l=i*2+1;
         int r=l+1;
@@ -28,7 +33,7 @@ void heap::sort(){
 		if (l<heap_size&&get_time(l)<temp){
 			swap(i,l);
 		}
-            draw();
+            //draw();
 		if (r<heap_size&&get_time(r)<temp){
 			swap(i,r);
 		}
@@ -46,17 +51,18 @@ int heap::remove_first(){
 	return temp;
 }
 
+
 void heap::add(int x, int y){
-    tab[heap_size]=x*width+y;
+    tab[heap_size]=y*width+x;
     heap_size++;
 }
 
 int heap::getx(int i){
-    return tab[i]/width;
+    return tab[i]%width;
 }
 
 int heap::gety(int i){
-    return tab[i]%width;
+    return tab[i]/width;
 }
 
 void heap::draw(){
@@ -65,7 +71,7 @@ void heap::draw(){
         cout << tab[i] << " ";
     }cout << "\nt: ";
     for(int i=0;i<heap_size;i++){
-        cout << get_time(tab[i]) << " ";
+        cout << get_time(i) << " ";
     }
 }
 
@@ -75,6 +81,7 @@ void heap::swap(int a, int b){
 	tab[b]=swap;
 }
 
+//metoda na odstrzal
 void heap::draw_times(int a, int b){
    for(int i=0;i<y;i++){
         cout<<"\n";
@@ -88,11 +95,14 @@ void heap::draw_times(int a, int b){
                 }
                 continue;
             }else{
-                cout<<map_tab[i][j].travel_time<<" ";
+
+                cout<<map_tab[i][j].travel_time;//<<" ";
                 if(map_tab[i][j].travel_time<10)
                     cout<<" ";
+                char cc = ' ';
+                cc=(a==j&&b==i)?'*':' ';
+                cout << cc;
             }
         }
-
     }cout<<"\n\n";
 }

@@ -95,11 +95,12 @@ void mapa::flood(){
     field * active = &f_tab[activey][activex];
 
     while (active != &f_tab[travel_destination_y][travel_destination_x]){
-
+        cout <<" "<< active << " " << &f_tab[travel_destination_y][travel_destination_x];
+        active = &f_tab[activey][activex];
         char k;
         cin>>k;
-        draw_times(activex,activey);
         h.draw_times(activex,activey);
+        //h.draw_times(activex,activey);
 
         compute_routes(activex, activey);
         //hsort ważne! odkomentowac! jako i temp
@@ -107,8 +108,8 @@ void mapa::flood(){
         int temp=h.remove_first();
         cout << temp;
         h.sort();
-        activex=temp/h.width;// check both
-        activey=temp%h.width;
+        activex=temp%h.width;// check both
+        activey=temp/h.width;
 
     }
 }
