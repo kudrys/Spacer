@@ -35,7 +35,7 @@ int main(){
 //    cout<<m.f_tab[3][5].height;
 //    cout<<m.f_tab[1][2].height;
 //
-   cout<<"\n-----------------------\n";
+   //cout<<"\n-----------------------\n";
    m.flood();
 }
 
