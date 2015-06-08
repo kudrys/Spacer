@@ -85,9 +85,14 @@ void mapa::flood(){
 
     field * active = &f_tab[activey][activex];
 
+
     while (activex!=travel_destination_x|| activey!=travel_destination_y){
+        char k;
+        cin >> k;
+        h.draw_times(activex, activey);
+        h.draw_top();
         compute_routes(activex, activey);
-        h.sort();
+        //h.sort();
         int temp=h.remove_first();
         activex=temp%h.width;
         activey=temp/h.width;

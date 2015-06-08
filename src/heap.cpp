@@ -33,7 +33,7 @@ void heap::sort(){
             if (l<heap_size&&get_time(l)<temp)
                 swap(i,l);
 		}/*
-		int * node=NULL;
+		int * nodent * node=NULL;
 		if (l<heap_size&&get_time(l)<temp){
 			node = &l;
 		}
@@ -60,6 +60,23 @@ void heap::rebuild(){
 int heap::remove_first(){
     int temp=tab[0];
 	tab[0]=tab[--heap_size];
+
+    int value = get_time(0);
+
+	int inserted = 0;
+	int child=1;
+
+	while(child<heap_size){
+        if(child+1<heap_size&&get_time(child+1)<get_time(child))
+            child++;
+        if(value<=get_time(child))
+            break;
+        swap(child, inserted);
+        inserted= child;
+        child=inserted*2+1;
+	}
+    //draw_top();
+
 	return temp;
 }
 
@@ -69,6 +86,16 @@ void heap::add(int x, int y){
         enlarge();
     tab[heap_size]=y*width+x;
     heap_size++;
+    int inserted = heap_size-1;
+
+    int parent = (inserted)/2;
+    int value = get_time(inserted);
+    while(heap_size&&get_time(parent)>value){
+        swap(parent, inserted);//mozna przyspieszyc bez swapa
+        inserted=parent;
+        parent=(inserted-1)/2;
+    }
+    //draw_top();
 }
 
 void heap::enlarge(){
