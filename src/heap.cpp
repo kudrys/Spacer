@@ -12,23 +12,15 @@ heap::heap(){
 *
 *
 */
-
-
 int heap::get_time(int i){
-	//cout << x << y << endl;
-	//cout << "xy: " << i << " " << tab[i] << " " << getx(i) << " " << gety(i)<< "\n";
 	return map_tab[gety(i)][getx(i)].travel_time;//check TODO
 }
 
 void heap::sort(){
-	for(int i=(heap_size/2)-0;i>=0;--i){
+	for(int i=heap_size/2;i>=0;--i){
         int l=i*2+1;
         int r=l+1;
-/*
-        draw();
-        cout << "\ni: " << i;
-        cout << "l: " << l << "r: " << r << endl;
-*/
+
 		int temp=get_time(i);
 		if(r<heap_size){
             if (get_time(l)<temp||get_time(r)<temp){
@@ -40,18 +32,24 @@ void heap::sort(){
 		}else{
             if (l<heap_size&&get_time(l)<temp)
                 swap(i,l);
-		}
-        //draw_top();
-		/*
+		}/*
+		int * node=NULL;
 		if (l<heap_size&&get_time(l)<temp){
-			swap(i,l);
+			node = &l;
 		}
-            draw_top();
 		if (r<heap_size&&get_time(r)<temp){
-			swap(i,r);
+			node=&r;
 		}
-		*/
+		if(node) swap(*node, i);
+        */
 	}
+}
+
+void heap::rebuild(){
+
+
+
+
 }
 
 /**

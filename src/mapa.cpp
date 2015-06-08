@@ -79,36 +79,17 @@ void mapa::draw_times(int a, int b){
     }cout<<"\n\n";
 }
 
-int mapa::time_count(field *startA,field *metaB){
-
-    if(startA->height >= metaB->height){
-        return 1;
-    }else{
-        return metaB->height-startA->height+1;
-    }
-}
-
 void mapa::flood(){
     int activex=travel_start_x;
     int activey=travel_start_y;
 
     field * active = &f_tab[activey][activex];
 
-    while (active != &f_tab[travel_destination_y][travel_destination_x]){
-        //cout <<" "<< active << " " << &f_tab[travel_destination_y][travel_destination_x];
-        active = &f_tab[activey][activex];
-        //char k;
-        //cin>>k;
-        //h.draw_times(activex,activey);
-        //h.draw_times(activex,activey);
-
+    while (activex!=travel_destination_x|| activey!=travel_destination_y){
         compute_routes(activex, activey);
-        //hsort ważne! odkomentowac! jako i temp
         h.sort();
         int temp=h.remove_first();
-        //cout << temp;
-        h.sort();
-        activex=temp%h.width;// check both
+        activex=temp%h.width;
         activey=temp/h.width;
         active = &f_tab[activey][activex];
     }
@@ -123,6 +104,7 @@ void mapa::compute_routes(int activex, int activey){
     compute_lifts(activex, activey);
 }
 
+//przyspieszyc
 void mapa::compute_near(int activex, int activey){
     field * active = &f_tab[activey][activex];
     field * temp;

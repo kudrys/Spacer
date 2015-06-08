@@ -17,22 +17,16 @@ field::~field(){
  */
 
 int field::compute_from(field *a){
-
     if(marked)
         return 0;
 
-    int time=0;
-    if(a->height>=height){
-       time=1;
-    }else{
-        time=height-a->height+1;
+    int time=1;
+    if(a->height<height){
+        time+=height-a->height;
     }
-    if(travel_time&&a->travel_time+time<travel_time){
-        travel_time=a->travel_time+time;
-    }else{
-        if(!travel_time){
-            travel_time=a->travel_time+time;
-        }
-    }
+    int prev_time=a->travel_time+time;
+    if(!travel_time||(travel_time&&prev_time<travel_time))
+        travel_time=prev_time;
+
     return travel_time;
 }

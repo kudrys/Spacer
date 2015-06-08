@@ -25,6 +25,7 @@ class heap
         void draw_times(int,int);
         void enlarge();
         void draw_top();
+        void rebuild();
     protected:
     private:
 };
