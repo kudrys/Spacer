@@ -90,15 +90,19 @@ void mapa::flood(){
         char k;
         cin >> k;
         h.draw_times(activex, activey);
-        h.draw_top();
+
+        //h.draw();
         compute_routes(activex, activey);
         //h.sort();
+        h.draw_top();
         int temp=h.remove_first();
+
         activex=temp%h.width;
         activey=temp/h.width;
+        cout<<"\ntemp:"<<temp<<"  acticeX:"<<activex<<"  activeY:"<<activey<<endl;
         active = &f_tab[activey][activex];
     }
-    cout << active->travel_time;
+    cout <<"\n\n"<<active->travel_time;
 }
 
 
@@ -114,22 +118,25 @@ void mapa::compute_near(int activex, int activey){
     field * active = &f_tab[activey][activex];
     field * temp;
 
-    //tab_x-y[4]={left,right,up,down}
-    int tab_x[4]={activex-1,activex+1,activex,activex};
-    int tab_y[4]={activey,activey,activey-1,activey+1};
+    //tab_x-y[4]={down,right,up,left}
+    int tab_x[4]={activex+1,activex,activex-1,activex};
+    int tab_y[4]={activey,activey+1,activey,activey-1};
 
     for(int i=0;i<4;i++){
         int temp_x=tab_x[i];
         int temp_y=tab_y[i];
-        if(0<=temp_x&&temp_x<x&&0<=temp_y&&temp_y<y){
+        if(0<=temp_y&&temp_y<=y&&0<=temp_x&&temp_x<=x){
             temp = &f_tab[temp_y][temp_x];
             if(temp->marked)
                 continue;
             //TODO if !(temp.traveltime) add to heap
             if(!temp->travel_time){
-                h.add(temp_x, temp_y);
+                cout<<i;
+                cout<<"\nactive.time:"<<active->travel_time;
+                h.add(active->travel_time);
             }
             temp->compute_from(active);
+
         }
     }
 }
@@ -137,36 +144,6 @@ void mapa::compute_near(int activex, int activey){
 void mapa::compute_lifts(int temp_x, int temp_y){
     //TODO
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void mapa::add_lift(int, int, int, int, int, int){
 }

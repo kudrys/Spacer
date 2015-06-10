@@ -15,9 +15,11 @@ class heap
         int width;
         field ** map_tab;
         int get_time(int);
-        void add(int, int);
         void sort();
+
+        void add(int);
         int remove_first();
+
         void draw();
         int getx(int);
         int gety(int);
@@ -25,7 +27,6 @@ class heap
         void draw_times(int,int);
         void enlarge();
         void draw_top();
-        void rebuild();
     protected:
     private:
 };
