@@ -46,26 +46,26 @@ void heap::sort(){
 
 
 
-void heap::add(int v){
- /*
+void heap::add(int x,int y){
+
     if(heap_size==tabsize)
         enlarge();
 
     //tab[heap_size]=y*width+x;
-    cout<<"\nadded x:"<<x<< "added y:"<<y<<endl;
-    tab[heap_size]=y*width+x;
-    heap_size++;
-    int inserted = heap_size-1;
+    //cout<<"\nadded x:"<<x<< "added y:"<<y<<endl;
+    int value=y*width+x;
+    int inserted = heap_size++;
+    //int inserted = heap_size-1;
 
-    int parent = (inserted)/2;
-    int value = get_time(inserted);
-    while(heap_size&&get_time(parent)<value){
+    int parent = (inserted-1)/2;
+    //int value = get_time(inserted);
+    while(inserted&&tab[parent]>value){
         swap(parent, inserted);//mozna przyspieszyc bez swapa
         inserted=parent;
         parent=(inserted-1)/2;
-    }
+    }tab[inserted]=value;
     //draw_top();
-     */
+    /*
     //int value=y*width+x;
 
     cout<<"\nv="<<v;
@@ -80,7 +80,7 @@ void heap::add(int v){
         inserted=parent;
         parent=(inserted-1)/2;
     }tab[inserted]=v;
-
+  */
     //cout<<heap_size<<endl;
     //tab[inserted]=value;
     //draw();
@@ -95,22 +95,23 @@ void heap::add(int v){
 */
 int heap::remove_first(){
         if(heap_size--){
-            int v=tab[heap_size];
+            int temp=tab[0];
 
+            int value=tab[heap_size];
+            cout<<"\nvalue"<<value;
             int inserted = 0;
             int child=1;
 
-            int temp=tab[0];
             while(child<heap_size){
-                if(child+1<heap_size&&get_time(child+1)<get_time(child))
+                if(child+1<heap_size&&tab[child+1]<tab[child])
                     child++;
-                if(v<=get_time(child))
+                if(value<=tab[child])
                     break;
                 //swap(child, inserted);
                 tab[inserted]=tab[child];
                 inserted= child;
                 child=child*2+1;
-            }
+            }tab[inserted]=value;
             /*
             tab[inserted]=v;
             if(heap_size--){
@@ -197,7 +198,7 @@ void heap::draw_top(){
     int top = 25>heap_size?heap_size:25;
     cout << "\n\n";
     for(int i=0; i<top;i++){
-        if (i==1||i==3)cout << "\n";
+        if (i==1||i==3||i==7)cout << "\n";
         cout << tab[i]<< "(" << get_time(i) << ") ";
     }
 

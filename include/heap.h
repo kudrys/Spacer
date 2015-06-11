@@ -17,7 +17,7 @@ class heap
         int get_time(int);
         void sort();
 
-        void add(int);
+        void add(int,int);
         int remove_first();
 
         void draw();
