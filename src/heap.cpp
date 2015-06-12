@@ -60,19 +60,19 @@ void heap::add(int x,int y){
 
     int parent = (inserted-1)/2;
     //int value = get_time(inserted);
-    cout <<"k"<< value <<"kek\n";
+    //cout <<"k"<< value <<"kek\n";
     tab[inserted]=value;
     while(inserted&&get_time(parent)>get_time(inserted)){
         //cout << "\nparent: " << get_time(parent) << " vslur: " << get_time(value);
-        cout << "\nparent: " << parent << " vslur: " << value << " inserted " << inserted;
+        //cout << "\nparent: " << parent << " vslur: " << value << " inserted " << inserted;
         swap(parent, inserted);//mozna przyspieszyc bez swapa
         inserted=parent;
         parent=(inserted-1)/2;
     }
-    cout << "kekend\n";
+    //cout << "kekend\n";
     tab[inserted]=value;
     //draw_top();
-    cout<<endl;
+    //cout<<endl;
 }
 
 
@@ -82,14 +82,11 @@ void heap::add(int x,int y){
 *   @return - first element's travel time
 */
 int heap::remove_first(){
-cout << "before\n";
-draw_top();
         if(heap_size--){
             int temp=tab[0];
 
             int value=get_time(heap_size);
             int index =tab[heap_size];
-            cout<<"\nvalue"<<value;
             int inserted = 0;
             int child=1;
 
@@ -126,13 +123,9 @@ draw_top();
                 //tab[inserted]=value;
                 //draw_top();
             */
-            cout<<"\ntemp:"<<temp<<endl;
-            cout << "after: \n";
-            draw_top();
             return temp;                     //zle liczy bo 10<20. A ma wybrac 20. Get_time?
 
         }
-    cout << "EXCEPTION ERROR MUAHAHAHAHAHA\nMUAHAHAHAHAHAHA\nMUAHAHAHHAHA\n";
     return 0;
 }
 
