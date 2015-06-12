@@ -12,6 +12,8 @@ class lift
         int time_travel;
         int travel_period;
         lift* next;
+        void add_lift();
+        void delete_lift();
         virtual ~lift();
     protected:
     private:

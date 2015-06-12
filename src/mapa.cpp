@@ -146,5 +146,9 @@ void mapa::compute_lifts(int temp_x, int temp_y){
     //TODO
 }
 
-void mapa::add_lift(int, int, int, int, int, int){
+void mapa::add_lift(int startx, int starty, int stopx, int stopy, int t, int p){
+
+
+    f_tab.lift_counter++;
+    f_tab[startx][starty].add_lift();
 }

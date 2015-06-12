@@ -5,6 +5,7 @@ using namespace std;
 field::field(){
    marked=0;
    travel_time=0;
+   lift *l;
 }
 
 field::~field(){
@@ -29,4 +30,9 @@ int field::compute_from(field *a){
         travel_time=prev_time;
 
     return travel_time;
+}
+
+
+void field::add_lift(){
+    l->add_lift();
 }
