@@ -88,13 +88,13 @@ void mapa::flood(){
 
     while (activex!=travel_destination_x|| activey!=travel_destination_y){
         char k;
-        cin >> k;
+        //cin >> k;
         h.draw_times(activex, activey);
 
         //h.draw();
         compute_routes(activex, activey);
         //h.sort();
-        h.draw_top();
+        //h.draw_top();
         int temp=h.remove_first();
 
         activex=temp%h.width;
@@ -131,8 +131,9 @@ void mapa::compute_near(int activex, int activey){
                 continue;
             //TODO if !(temp.traveltime) add to heap
             if(!temp->travel_time){
-                cout<<i;
+                cout<<" i " <<i;
                 //cout<<"\nactive.time:"<<active->travel_time;
+            temp->compute_from(active);
                 h.add(temp_x,temp_y);
                 //cout<<"kek";
             }

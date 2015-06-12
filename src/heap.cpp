@@ -6,13 +6,14 @@ heap::heap(){
     //empty
 }
 /**
-*   takes hashed number as an argument
-*   @i -
-*
+*   takes heap index as an argument
+*   @i - time of the field in map with coordinates (x, y) computed from the heap element
 *
 */
 int heap::get_time(int i){
-	return map_tab[gety(i)][getx(i)].travel_time;//check TODO
+    int r= map_tab[gety(i)][getx(i)].travel_time;//check TODO
+    //cout << "i: " << i<< " y: " << gety(i) << " x " << getx(i) << "gettime: " << r << " :)\n";
+	return r;//map_tab[gety(i)][getx(i)].travel_time;//check TODO
 }
 
 void heap::sort(){
@@ -59,31 +60,18 @@ void heap::add(int x,int y){
 
     int parent = (inserted-1)/2;
     //int value = get_time(inserted);
-    while(inserted&&tab[parent]>value){
+    cout <<"k"<< value <<"kek\n";
+    tab[inserted]=value;
+    while(inserted&&get_time(parent)>get_time(inserted)){
+        //cout << "\nparent: " << get_time(parent) << " vslur: " << get_time(value);
+        cout << "\nparent: " << parent << " vslur: " << value << " inserted " << inserted;
         swap(parent, inserted);//mozna przyspieszyc bez swapa
         inserted=parent;
         parent=(inserted-1)/2;
-    }tab[inserted]=value;
+    }
+    cout << "kekend\n";
+    tab[inserted]=value;
     //draw_top();
-    /*
-    //int value=y*width+x;
-
-    cout<<"\nv="<<v;
-    int inserted = heap_size++;//heap_size-1;
-
-    int parent = (inserted-1)/2;
-
-    //int value = tab[heap_size-1];
-    while(inserted>0 && tab[parent]>v){
-        //swap(inserted , parent);//mozna przyspieszyc bez swapa
-        tab[inserted]=tab[parent];
-        inserted=parent;
-        parent=(inserted-1)/2;
-    }tab[inserted]=v;
-  */
-    //cout<<heap_size<<endl;
-    //tab[inserted]=value;
-    //draw();
     cout<<endl;
 }
 
@@ -94,24 +82,27 @@ void heap::add(int x,int y){
 *   @return - first element's travel time
 */
 int heap::remove_first(){
+cout << "before\n";
+draw_top();
         if(heap_size--){
             int temp=tab[0];
 
-            int value=tab[heap_size];
+            int value=get_time(heap_size);
+            int index =tab[heap_size];
             cout<<"\nvalue"<<value;
             int inserted = 0;
             int child=1;
 
             while(child<heap_size){
-                if(child+1<heap_size&&tab[child+1]<tab[child])
+                if(child+1<heap_size&&get_time(child+1)<get_time(child))
                     child++;
-                if(value<=tab[child])
+                if(value<=get_time(child))
                     break;
                 //swap(child, inserted);
                 tab[inserted]=tab[child];
                 inserted= child;
-                child=child*2+1;
-            }tab[inserted]=value;
+                child=2*child+1;
+            }tab[inserted]=index;
             /*
             tab[inserted]=v;
             if(heap_size--){
@@ -136,9 +127,13 @@ int heap::remove_first(){
                 //draw_top();
             */
             cout<<"\ntemp:"<<temp<<endl;
+            cout << "after: \n";
+            draw_top();
             return temp;                     //zle liczy bo 10<20. A ma wybrac 20. Get_time?
 
         }
+    cout << "EXCEPTION ERROR MUAHAHAHAHAHA\nMUAHAHAHAHAHAHA\nMUAHAHAHHAHA\n";
+    return 0;
 }
 
 
@@ -156,10 +151,19 @@ int heap::getx(int i){
     return tab[i]%width;
 }
 
+/**
+*   @i - index in heap
+*   @return - y index of the map_tap or f_tab
+*/
 int heap::gety(int i){
     return tab[i]/width;
 }
 
+/**
+*   @i - index in heap
+*   @return - x index of the map_tab or f_tab
+*
+*/
 void heap::draw(){
     cout <<endl;
     for(int i=0;i<heap_size;i++){
