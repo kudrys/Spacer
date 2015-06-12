@@ -11,7 +11,7 @@ class field
         int lift_counter;
         bool marked;
         int compute_from(field*);
-        void add_lift();
+        int compute_from_the(field*, lift*);
         lift *l;
 
         virtual ~field();

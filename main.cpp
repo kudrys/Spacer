@@ -21,6 +21,7 @@ int main(){
     }
     m.load_map();
     m.flood();
+    //delete &m;
 }
 
 
