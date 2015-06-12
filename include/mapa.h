@@ -22,7 +22,7 @@ class mapa
         void draw_times(int,int);
         int time_count(field*,field*);
         void flood();
-        void add_lift(int,int,int,int,int,int);
+        void add_lift();
         void compute_lifts(int, int);
         void compute_near(int, int);
         void compute_routes(int, int);

@@ -16,11 +16,8 @@ int main(){
     cin>>m.lift_counter;
 
     for(int i=0;i<m.lift_counter;i++){
-        int startx,starty,stopx,stopy;
-        int time,period;
-        cin>>startx>>starty>>stopx>>stopy;
-        cin>>time>>period;
-        m.add_lift(startx,starty,stopx,stopy,time,period);
+
+        m.add_lift();
     }
     m.load_map();
     m.flood();

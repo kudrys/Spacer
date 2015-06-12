@@ -146,9 +146,28 @@ void mapa::compute_lifts(int temp_x, int temp_y){
     //TODO
 }
 
-void mapa::add_lift(int startx, int starty, int stopx, int stopy, int t, int p){
+void mapa::add_lift(){
 
+    int startx,starty,stopx,stopy;
+    int time,period;
+    cin>>startx>>starty>>stopx>>stopy;
+    cin>>time>>period;
 
-    f_tab.lift_counter++;
-    f_tab[startx][starty].add_lift();
+    f_tab[startx][starty].lift_counter++;
+
+    lift temp;
+    temp.next = f_tab[startx][starty].l;
+    f_tab[startx][starty].l = &temp;
+
+    lift *active = f_tab[startx][starty].l;
+    active->time_travel=time;
+    active->travel_period=period;
+    active->x_destination=stopx;
+    active->y_destination=stopy;
 }
+
+
+
+
+
+

@@ -6,6 +6,7 @@ field::field(){
    marked=0;
    travel_time=0;
    lift *l;
+   l=NULL;
 }
 
 field::~field(){
@@ -34,5 +35,5 @@ int field::compute_from(field *a){
 
 
 void field::add_lift(){
-    l->add_lift();
+   // l->add_lift();
 }
